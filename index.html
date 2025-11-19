@@ -8,6 +8,13 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        .active {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,11 +33,20 @@
                     <img class="w-[120px]" src="assets/Logo.png" alt="">
                 </div>
                 <div class="navbar-center">
-                    <a class="btn btn-ghost text-xs bg-gray-200 ">Sort by view</a>
+                    <label class="input">
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input id="search-input" type="search" required placeholder="Search" />
+                    </label>
                 </div>
                 <div class="navbar-end">
-                    <button class="btn btn-ghost text-white bg-red-500 w-[70px]">
-                        Blog
+                    <button class="btn btn-ghost text-white bg-red-500 ">
+                        Sort by view
                     </button>
                 </div>
                 <div class="border-b-10 "></div>
@@ -39,7 +55,7 @@
     </header>
 
     <nav id="category-container" class="flex justify-center py-8 space-x-8 ">
-        <button class="btn btn-sm hover:bg-red-500 hover:text-white">All</button>
+        <button id="btn-all" onclick="loadVideos()" class="btn btn-sm hover:bg-red-300 hover:text-white ">All</button>
 
     </nav>
 
@@ -54,8 +70,35 @@
 
         <section class="w-11/12 mx-auto grid grid-cols-4 gap-5 " id="videos-container">
 
-
+            <div class="col-span-full flex flex-col justify-center items-center py-20">
+                <img class="w-[150px]" src="assets/Icon.png" alt="">
+                <h2 class="text-3xl font-bold">
+                    Oops!! Sorry, There is no content here
+                </h2>
+            </div>
         </section>
+
+
+
+
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="videoDetails" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+
+                <div id="detalsContainer"></div>
+
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+
+
     </main>
 
     <script src="js/script.js"></script>
