@@ -1,4 +1,21 @@
 // -----------------------------------------
+// Spinner show and hide
+// -----------------------------------------
+
+const showLoader = () => {
+    document.getElementById('loader').classList.remove('hidden');
+
+    document.getElementById('videos-container').classList.add('hidden');
+}
+
+const hiddenLoader = () => {
+    document.getElementById('loader').classList.add('hidden');
+
+    document.getElementById('videos-container').classList.remove('hidden');
+}
+
+
+// -----------------------------------------
 // Remove button active class
 // -----------------------------------------
 
@@ -52,6 +69,8 @@ function displayCategories(categories) {
 
 const loadCategoriesVideos = (id) => {
 
+    showLoader();
+
     console.log(id);
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
 
@@ -79,6 +98,9 @@ const loadCategoriesVideos = (id) => {
 
 
 function loadVideos(searchText = "") {
+
+    showLoader();
+
     fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
         .then(res => res.json())
         .then(data => {
@@ -108,6 +130,7 @@ function displayVideos(videos) {
                 </h2>
             </div>
         `
+        hiddenLoader();
         return;
     }
 
@@ -156,6 +179,7 @@ function displayVideos(videos) {
         `;
 
         videosContainer.appendChild(videoDiv);
+        hiddenLoader();
     }
 }
 
